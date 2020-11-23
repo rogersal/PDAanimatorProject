@@ -21,14 +21,14 @@ public class Logo extends JPanel
     // Define your variables here if you want to assign them in the init()
     // method and use them in other methods
     // 
-    int numTrees = 3;  //example instance variable 
+    int testString = 3;  //example instance variable 
 
     public static void main(String[] args)
     {
         //Create a window frame
         JFrame myFrame = new JFrame();
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        myFrame.setSize(500,667);
+        myFrame.setSize(900,700);
 
         // put the picture in the frame
         Logo logo = new Logo();
@@ -42,9 +42,9 @@ public class Logo extends JPanel
 
     public void init() 
     {      
-        String question = "How many trees do you want in the logo? (Enter 1, 2, or 3)";
-        String numTreesString = JOptionPane.showInputDialog(question);
-        numTrees = Integer.parseInt(numTreesString);        
+        String question = "What string would you like to test? (Enter 1, 2, or 3)";
+        String numString = JOptionPane.showInputDialog(question);
+        testString = Integer.parseInt(numString);        
     }
     
     public void paint(Graphics g) { 
@@ -53,13 +53,13 @@ public class Logo extends JPanel
         drawTree(g, 100, 50);    
         
         // check to see if we need to draw a second tree
-        if(numTrees > 1)
+        if(testString > 1)
         {
             drawTree(g, 150, 175);
         }
 
         // check to see if we need to draw a third tree
-        if(numTrees == 3)
+        if(testString == 3)
         {
             drawTree(g, 200, 225);
         }
