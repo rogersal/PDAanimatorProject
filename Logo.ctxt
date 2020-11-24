@@ -1,12 +1,16 @@
 #BlueJ class context
 comment0.target=Logo
-comment0.text=\r\n\ Class\ Logo\ -\ \!\!\!\ write\ a\ description\ of\ the\ class\ here\ \!\!\!\r\n\ \r\n\ @author\ \!\!\!\ Put\ Your\ Name\ Here\ \!\!\!\r\n\ @version\ \!\!\!\ Put\ Date\ Here\ \!\!\!\r\n\ \r\n\ --------------------------\r\n\ CS203\r\n\ Starter\ Code\ Last\ Updated\:\ \ Summer\ 2019\r\n\ --------------------------\r\n
+comment0.text=\r\n\ @author\ -Alex\ Rogers\r\n\ \r\n\ --------------------------\r\n
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
 comment2.params=
 comment2.target=void\ init()
 comment3.params=g
 comment3.target=void\ paint(java.awt.Graphics)
-comment4.params=g\ x\ y
-comment4.target=void\ drawTree(java.awt.Graphics,\ int,\ int)
-numComments=5
+comment4.params=g
+comment4.target=void\ initPaint(java.awt.Graphics)
+comment5.params=g\ x\ y\ stateNum
+comment5.target=void\ drawState(java.awt.Graphics,\ int,\ int,\ int)
+comment6.params=g
+comment6.target=void\ initText(java.awt.Graphics)
+numComments=7
