@@ -26,7 +26,7 @@ public class Logo extends JPanel
     
     int currentState = 0;
     int currentFrame = 0;
-    
+    String currentStack = " ";
     static int framex = 900;
     static int framey = 700;
 
@@ -64,24 +64,160 @@ public class Logo extends JPanel
     public void paint(Graphics g) { 
         super.paint(g);
         initPaint(g,4,testString);
-       
         
         
-        int x = 0; 
-        int stateNum = 0;
+        
+        int x = 0; //keeps while loop running
+        //int stateNum = 0;//startStateNum at zero
         //TODO: while loop to change jframe
-        /*
+        
         while(x ==0){
             boolean goForward = false;
             boolean goBackwards = false;
+            if(goForward == true){
+                currentFrame++;
+                if(currentFrame>9){
+                    x = 1;
+                }
             
+            }
+            if(goBackwards == true){
+                currentFrame--;
+                if(currentFrame<0){
+                    currentFrame =0;
+                }
             
-            initPaint(g,stateNum,testString);
-            if(testString == 1){}
-            if(testString == 2){}
-            if(testString == 3){}
+            }
+            
+            //initPaint(g,stateNum,testString);
+            //Test strings are (ABBBBA, ABAABA, ABABBB)
+            if(testString == 1){
+                switch(currentFrame){
+                    case 0:
+                    currentState =0;
+                    currentStack = " ";
+                    break;
+                    case 1:
+                    currentState =1;
+                    currentStack = "$";
+                    break;
+                    case 2:
+                    currentState =1;
+                    currentStack = "$ A";
+                    break;
+                    case 3:
+                    currentState =1;
+                    currentStack = "$ A B";
+                    break;
+                    case 4:
+                    currentState =1;
+                    currentStack = "$ A B B";
+                    break;
+                    case 5:
+                    currentState =2;
+                    currentStack = "$ A B B";
+                    break;
+                    case 6:
+                    currentState =2;
+                    currentStack = "$ A B";
+                    break;
+                    case 7:
+                    currentState =2;
+                    currentStack = "$ A";
+                    break;
+                    case 8:
+                    currentState =2;
+                    currentStack = "$";
+                    break;
+                    case 9:
+                    currentState =3;
+                    currentStack = " ";
+                    break;
+                }
+            }
+            if(testString == 2){
+                switch(currentFrame){
+                    case 0:
+                    currentState =0;
+                    currentStack = " ";
+                    break;
+                    case 1:
+                    currentState =1;
+                    currentStack = "$";
+                    break;
+                    case 2:
+                    currentState =1;
+                    currentStack = "$ A";
+                    break;
+                    case 3:
+                    currentState =1;
+                    currentStack = "$ A B";
+                    break;
+                    case 4:
+                    currentState =1;
+                    currentStack = "$ A B A";
+                    break;
+                    case 5:
+                    currentState =2;
+                    currentStack = "$ A B A";
+                    break;
+                    case 6:
+                    currentState =2;
+                    currentStack = "$ A B";
+                    break;
+                    case 7:
+                    currentState =2;
+                    currentStack = "$ A";
+                    break;
+                    case 8:
+                    currentState =2;
+                    currentStack = "$";
+                    break;
+                    case 9:
+                    currentState =3;
+                    currentStack = " ";
+                    break;
+                }
+            }
+            if(testString == 3){
+                switch(currentFrame){
+                    case 0:
+                    currentState =0;
+                    currentStack = " ";
+                    break;
+                    case 1:
+                    currentState =1;
+                    currentStack = "$";
+                    break;
+                    case 2:
+                    currentState =1;
+                    currentStack = "$ A";
+                    break;
+                    case 3:
+                    currentState =1;
+                    currentStack = "$ A B";
+                    break;
+                    case 4:
+                    currentState =1;
+                    currentStack = "$ A B A";
+                    break;
+                    case 5:
+                    currentState =1;
+                    currentStack = "$ A B A B";
+                    break;
+                    case 6:
+                    currentState =1;
+                    currentStack = "$ A B A B B";
+                    break;
+                    case 7:
+                    currentState =1;
+                    currentStack = "$ A B A B B B";
+                    break;
+                }
+            }
+            initPaint(g,currentState,testString);
         }
-        */
+        
     }
     public void initPaint(Graphics g,int stateNum, int stringNum){
         drawState(g, q1x+75, q0y-75,4); //q1 arrow to itself, 4 removes it from accept color possiblity
@@ -108,8 +244,9 @@ public class Logo extends JPanel
         g.fillPolygon(new int[] {q2x+75,q2x+65, q2x+85}, new int[] {145+q2y,160+q2y,160+q2y}, 3);
         g.fillPolygon(new int[] {q2x+75, q2x+65,q2x+85}, new int[] {q1y+5,q1y-10,q1y-10}, 3);
 
-    
+        
         initText(g);
+        initStack(g);
     }
     
     public void drawState(Graphics g, int x, int y, int stateNum)
@@ -135,6 +272,7 @@ public class Logo extends JPanel
     public void initText(Graphics g){
         //testString if cases, ex. Test strings are (ABBBBA, ABAABA, ABABBB)
         int stringLabelY = 50;
+        g.setColor(Color.BLACK);
         if(testString == 1){
             g.drawString("A B B B B A", 400, stringLabelY);
         }
@@ -153,9 +291,12 @@ public class Logo extends JPanel
         g.drawString("1,1->ε", q1x +250, q2y+ 165);
         g.drawString("ε,$->ε", 400, q3y + 50);
     }
-    public void initStack(Graphics g,String currentStack){
+    public void initStack(Graphics g){
         //initializes stack graphic
-        
+        g.setColor(Color.WHITE);
+        g.fillRect(framex/2-100,framey/2 -20, 100, 30);
+        g.setColor(Color.BLACK);
+        g.drawString(currentStack,framex/2 -90, framey/2);
     
     }
 }
