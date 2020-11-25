@@ -1,4 +1,3 @@
-package Logonew;
 
 // needed for doing graphics
 import java.awt.*;
@@ -6,7 +5,7 @@ import java.awt.geom.*;
 import javax.swing.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
+import java.awt.event.*;
 /**
  * @author -Alex Rogers
  * 
@@ -31,8 +30,6 @@ public class Logo extends JPanel
     int currentState = 0;
     int currentFrame = 0;
 
-            
-            
     //b.setBounds(50,50,90,50);
     //frame.add(b);
 
@@ -48,7 +45,30 @@ public class Logo extends JPanel
         NextButton.setBounds(25,80,80, 40);
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myFrame.setSize(900,700);
+        BackButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent arg0) {
+                }
+            });
+        NextButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent arg0) {
+                }
+            });
+        BackButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    if (BackButton.getModel().isPressed()) {
+                        System.out.println("Back Button is pressed");//this is a placeholder, put redraw here
+                    }
 
+                }
+            });
+        NextButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    if (NextButton.getModel().isPressed()) {
+                        System.out.println("Next Button is pressed");//this is a placeholder, put redraw here
+                    }
+
+                }
+            });
         // put the picture in the frame
 
         Logo logo = new Logo();
@@ -59,6 +79,7 @@ public class Logo extends JPanel
         //System.out.println("hello again");
 
     }
+
     public void init() 
     {      
         String question = "What string would you like to test? (Enter 1, 2, or 3)";
@@ -68,16 +89,20 @@ public class Logo extends JPanel
 
     public void paint(Graphics g) { 
         super.paint(g);
-        initPaint(g);
 
         int x = 0; 
+        int stateNum = 0;
+        initPaint(g,stateNum,testString);
         //TODO: while loop to change jframe
         while(x > 3){
+            boolean Forward = false;
+            boolean Backward = false;
 
+            initPaint(g,stateNum,testString);
         }
     }
 
-    public void initPaint(Graphics g){
+    public void initPaint(Graphics g, int stateNum, int stringNum){
         drawState(g, q1x+75, q0y-75,4); //q1 arrow to itself, 4 removes it from accept color possiblity
         drawState(g, q2x+75, q2y+75,4);
 
