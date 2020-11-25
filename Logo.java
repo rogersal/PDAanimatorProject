@@ -2,7 +2,8 @@
 import java.awt.*;
 import java.awt.geom.*;
 import javax.swing.*;
-
+import java.awt.event.ActionEvent;
+import java.util.concurrent.TimeUnit;
 /**
 * @author -Alex Rogers
 * Test strings are (ABBBBA, ABAABA, ABABBB)
@@ -14,7 +15,7 @@ public class Logo extends JPanel
     // instance variables
     // 
     // 
-    int testString = 3;  //example instance variable
+    int testString1 = 3;  //example instance variable
     int q0x = 100;
     int q0y = 100;
     int q1x = 500;
@@ -24,12 +25,23 @@ public class Logo extends JPanel
     int q3x = q0x;
     int q3y = q2y;
     
+    
+    static int framex = 900;
+    static int framey = 700;
+    boolean goForward = false;
+    boolean goBackwards = false;
     int currentState = 0;
     int currentFrame = 0;
     String currentStack = " ";
-    static int framex = 900;
-    static int framey = 700;
-
+    
+    public void setState(int x){
+        currentState = x;
+    
+    }
+    public int getState(){
+        return currentState;
+    
+    }
     public static void main(String[] args)
     {
         //Create a window frame
@@ -40,8 +52,12 @@ public class Logo extends JPanel
         // put the picture in the frame
         
         Logo logo = new Logo();
-        logo.init();
+        int testString = logo.init();
         myFrame.add(logo);
+        
+       
+        //go(logo);
+        
         
         
         
@@ -52,28 +68,12 @@ public class Logo extends JPanel
         
         
         
+        
+        
     }
-
-    public void init() 
-    {      
-        String question = "What string would you like to test? (Enter 1, 2, or 3)";
-        String numString = JOptionPane.showInputDialog(question);
-        testString = Integer.parseInt(numString);        
-    }
-    
-    public void paint(Graphics g) { 
-        super.paint(g);
-        initPaint(g,4,testString);
-        
-        
-        
-        int x = 0; //keeps while loop running
-        //int stateNum = 0;//startStateNum at zero
-        //TODO: while loop to change jframe
-        
-        while(x ==0){
-            boolean goForward = false;
-            boolean goBackwards = false;
+    public void go(){
+        while(currentFrame < 8){
+            /*
             if(goForward == true){
                 currentFrame++;
                 if(currentFrame>9){
@@ -88,10 +88,21 @@ public class Logo extends JPanel
                 }
             
             }
+            */
+            try        
+            {
+                 Thread.sleep(1000);
+            } 
+            catch(InterruptedException ex) 
+            {
+               Thread.currentThread().interrupt();
+             }
+           
+            
             
             //initPaint(g,stateNum,testString);
             //Test strings are (ABBBBA, ABAABA, ABABBB)
-            if(testString == 1){
+            if(testString1 == 1){
                 switch(currentFrame){
                     case 0:
                     currentState =0;
@@ -135,7 +146,7 @@ public class Logo extends JPanel
                     break;
                 }
             }
-            if(testString == 2){
+            if(testString1 == 2){
                 switch(currentFrame){
                     case 0:
                     currentState =0;
@@ -179,7 +190,7 @@ public class Logo extends JPanel
                     break;
                 }
             }
-            if(testString == 3){
+            if(testString1 == 3){
                 switch(currentFrame){
                     case 0:
                     currentState =0;
@@ -215,8 +226,30 @@ public class Logo extends JPanel
                     break;
                 }
             }
-            initPaint(g,currentState,testString);
+            currentFrame++;
+            repaint();
         }
+    }
+     
+    
+    public int init() 
+    {      
+        String question = "What string would you like to test? (Enter 1, 2, or 3)";
+        String numString = JOptionPane.showInputDialog(question);
+        testString1 = Integer.parseInt(numString); 
+        return testString1;
+    }
+    
+    public void paint(Graphics g) { 
+        super.paint(g);
+        
+        initPaint(g,currentState,testString1);
+        go();
+        
+        int x = 0; //keeps while loop running
+        //int stateNum = 0;//startStateNum at zero
+        //TODO: while loop to change jframe
+        
         
     }
     public void initPaint(Graphics g,int stateNum, int stringNum){
@@ -273,13 +306,13 @@ public class Logo extends JPanel
         //testString if cases, ex. Test strings are (ABBBBA, ABAABA, ABABBB)
         int stringLabelY = 50;
         g.setColor(Color.BLACK);
-        if(testString == 1){
+        if(testString1 == 1){
             g.drawString("A B B B B A", 400, stringLabelY);
         }
-        if(testString == 2){
+        if(testString1 == 2){
             g.drawString("A B A A B A", 400, stringLabelY);
         }
-        if(testString == 3){
+        if(testString1 == 3){
             g.drawString("A B A B B B", 400, stringLabelY);
         }
         //directed graph labels
